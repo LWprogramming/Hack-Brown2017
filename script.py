@@ -30,8 +30,8 @@ def clean_data():
 	data[:, 4] = np.array([clean_quotes(x) for x in data[:, 4]])
 
 	# step 3
-	# data[:, 3] = np.array([remove_emoticons(x) for x in data[:, 3]])
-	# data[:, 4] = np.array([remove_emoticons(x) for x in data[:, 4]])
+	data[:, 3] = np.array([remove_emoticons(x) for x in data[:, 3]])
+	data[:, 4] = np.array([remove_emoticons(x) for x in data[:, 4]])
 
 	return data
 
@@ -71,7 +71,7 @@ def clean_quotes(string):
 
 def remove_emoticons(string):
 	''' removes emoticons from the strings.'''
-
+	return re.sub('emoticons\S*', '', string)
 
 if __name__ == '__main__':
 	main()
