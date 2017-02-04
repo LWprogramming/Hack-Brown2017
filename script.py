@@ -67,5 +67,9 @@ def clean_quotes(string):
 	# quadruple quotes will also be removed by replacing all duplicated double quotes "" with a single double quote ". This way, back-to-back duplicated double quotes (e.g. ""hello""""world"" will become "hello""world") will be taken care of as well.
 	return string
 
+def remove_emoticons(string):
+	''' removes emoticons from the strings.'''
+	
+
 if __name__ == '__main__':
 	main()
