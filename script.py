@@ -15,6 +15,7 @@ def clean_data():
 	Steps:
 	1. Load data from csv file
 	2. Remove unnecessary quotes
+	3. Remove emoticons
 	3. Fix all typos using Microsoft's Bing Spell Check API: https://www.microsoft.com/cognitive-services/en-us/bing-spell-check-api
 	'''
 	# step 1
@@ -25,6 +26,13 @@ def clean_data():
 	# print(data[0,1]) # should be 1 for sarcasm
 
 	# step 2
+	data[:, 3] = np.array([clean_quotes(x) for x in data[:, 3]])
+	data[:, 4] = np.array([clean_quotes(x) for x in data[:, 4]])
+
+	# step 3
+	data[:, 3] = np.array([remove_emoticons(x) for x in data[:, 3]])
+	data[:, 4] = np.array([remove_emoticons(x) for x in data[:, 4]])
+
 	return data
 
 def find_category(category):
