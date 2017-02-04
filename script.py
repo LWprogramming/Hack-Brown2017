@@ -16,7 +16,6 @@ def clean_data():
 	2. Remove unnecessary quotes
 	3. Fix all typos using Microsoft's Bing Spell Check API: https://www.microsoft.com/cognitive-services/en-us/bing-spell-check-api
 	'''
-
 	# step 1
 	data = pandas.read_csv('sarcasm_v2.csv').as_matrix()
 	# print(data.shape)
@@ -26,7 +25,6 @@ def clean_data():
 
 	# step 2
 	return data
-
 
 def find_category(category):
 	return {
