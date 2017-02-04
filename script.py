@@ -30,8 +30,8 @@ def clean_data():
 	data[:, 4] = np.array([clean_quotes(x) for x in data[:, 4]])
 
 	# step 3
-	data[:, 3] = np.array([remove_emoticons(x) for x in data[:, 3]])
-	data[:, 4] = np.array([remove_emoticons(x) for x in data[:, 4]])
+	# data[:, 3] = np.array([remove_emoticons(x) for x in data[:, 3]])
+	# data[:, 4] = np.array([remove_emoticons(x) for x in data[:, 4]])
 
 	return data
 
@@ -49,13 +49,12 @@ def sarcasm(sarcasm_value):
 	}[sarcasm_value]
 
 def get_data_index(ID):
-	'''find the index of the data point. Corresponds to 1234 in GEN_sarc_1234 under ID in data.
-	'''	# given a string as shown in the comment, extract the number in it, possibly with regex.
-  result = ''
-  for i in ID:
-    if i.isdigit():
-      result = result + i
-  return int(result)
+	'''find the index of the data point. Corresponds to 1234 in GEN_sarc_1234 under ID in data.'''
+	result = ''
+	for i in ID:
+		if i.isdigit():
+			result = result + i
+	return int(result)
 
 def clean_quotes(string):
 	'''
@@ -72,7 +71,7 @@ def clean_quotes(string):
 
 def remove_emoticons(string):
 	''' removes emoticons from the strings.'''
-	
+
 
 if __name__ == '__main__':
 	main()
