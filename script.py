@@ -7,11 +7,26 @@ import numpy as np
 import pandas
 
 def main():
+	data = clean_data()
+
+def clean_data():
+	'''
+	Steps:
+	1. Load data from csv file
+	2. Remove unnecessary quotes
+	3. Fix all typos using Microsoft's Bing Spell Check API: https://www.microsoft.com/cognitive-services/en-us/bing-spell-check-api
+	'''
+
+	# step 1
 	data = pandas.read_csv('sarcasm_v2.csv').as_matrix()
 	# print(data.shape)
 	data[:, 0] = np.array([find_category(x) for x in data[:, 0]])
 	data[:, 1] = np.array([sarcasm(x) for x in data[:, 1]])
 	# print(data[0,1]) # should be 1 for sarcasm
+
+	# step 2
+	return data
+
 
 def find_category(category):
 	return {
