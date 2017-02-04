@@ -5,6 +5,7 @@ By Shereen Oraby, Vrindavan Harrison, Lena Reed, Ernesto Hernandez, Ellen Riloff
 '''
 import numpy as np
 import pandas
+import re
 
 def main():
 	data = clean_data()
@@ -44,5 +45,19 @@ def get_data_index(ID):
 	'''
 	# TODO: given a string as shown in the comment, extract the number in it, possibly with regex.
         # Test
+
+def clean_quotes(string):
+	'''
+	clean_quotes a string and removes beginning and closing quotation marks. Also replaces all duplicated double quotation marks with just one set of double quotation marks, e.g. ""hello"" with "hello"
+	'''
+	if string[0] == '"':
+		string = string[1:] # first character
+	if string[-1] == '"':
+		string = string[:-1] # last character
+	string = re.sub('\"\"', "\"", string)
+	# triple quotes should not exist after removing first and last quotes from beginning and end, respectively, of the original string.
+	# quadruple quotes will also be removed by replacing all duplicated double quotes "" with a single double quote ". This way, back-to-back duplicated double quotes (e.g. ""hello""""world"" will become "hello""world") will be taken care of as well.
+	return string
+
 if __name__ == '__main__':
 	main()
