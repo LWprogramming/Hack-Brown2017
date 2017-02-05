@@ -21,13 +21,13 @@ def make_request(text_vector):
     body = body_from_string_vectors(text_vector)
     try:
         conn = http.client.HTTPSConnection('westus.api.cognitive.microsoft.com')
-    	conn.request("POST", "/text/analytics/v2.0/sentiment?%s" % params, str(body), headers)
-    	response = conn.getresponse()
-    	data = response.read()
-    	print(data) # score is on a scale from 0 to 1, with 0 being the most negative sentiment and 1 being the most positive sentiment. Includes some metadata.
-    	conn.close()
+        conn.request("POST", "/text/analytics/v2.0/sentiment?%s" % params, str(body), headers)
+        response = conn.getresponse()
+        data = response.read()
+        print(data) # score is on a scale from 0 to 1, with 0 being the most negative sentiment and 1 being the most positive sentiment. Includes some metadata.
+        conn.close()
     except Exception as e:
-    	print("[Errno {0}] {1}".format(e.errno, e.strerror))
+        print("[Errno {0}] {1}".format(e.errno, e.strerror))
 
 def body_from_string_vectors(vector):
     '''
