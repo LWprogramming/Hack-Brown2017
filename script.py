@@ -78,11 +78,11 @@ def get_api_key_path():
 	'''gets path to api key in a text file stored locally, outside of git repository.'''
 	parent_path = os.path.pardir
 	return parent_path + "/api_key.txt"
-	
+
 def get_api_key():
 	'''gets api key.'''
 	handle = open(get_api_key_path(), 'r')
-	data = handle.read()
+	data = handle.readline() # primary API key is on the first line, secondary API key is the second line.
 	handle.close()
 	return data
 
