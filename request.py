@@ -8,6 +8,8 @@ import numpy as np
 def main():
     '''
     Sends a single POST request with a test bit of text.
+
+    Expected output: b'{"documents":[{"score":0.9750894,"id":"0"}],"errors":[]}'
     '''
     sample_text = 'I had a wonderful experience! The rooms were wonderful and the staff were helpful.' # from default given at https://www.microsoft.com/cognitive-services/en-us/text-analytics-api
     make_request(np.array([sample_text]))
@@ -33,18 +35,11 @@ def body_from_string_vectors(text_vector):
     '''
     Takes in a numpy vector of strings, each string representing a separate quote from someone.
     '''
-    body_documents_list = []
-    for string in text_vector:
-        body_documents_list += {
-        'language': 'en',
-        'id': '1',
-        'text': string
-        }
+    body_documents_list = [{'language':'en', 'id': str(index), 'text': string} for index, string in enumerate(text_vector)]
     body = {
-        'documents': {
-            body_documents_list
-        }
+        'documents': body_documents_list
     }
+    return body
 
 def generate_headers():
     api_key = data_clean.get_api_key()
