@@ -82,7 +82,7 @@ def get_api_key_path():
 def get_api_key():
 	'''gets api key.'''
 	handle = open(get_api_key_path(), 'r')
-	data = handle.readline() # primary API key is on the first line, secondary API key is the second line.
+	data = handle.readline().strip() # primary API key is on the first line, secondary API key is the second line.
 	handle.close()
 	return data
 
