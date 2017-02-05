@@ -27,8 +27,7 @@ def make_request(text_vector):
         response = conn.getresponse()
         evaluation = response.read()
         conn.close()
-        return evaluation # score is on a scale from 0 to 1, with 0 being the most negative sentiment and 1 being the most positive sentiment. Includes some metadata.
-
+        return evaluation.decode('utf-8') # score is on a scale from 0 to 1, with 0 being the most negative sentiment and 1 being the most positive sentiment. Includes some metadata.
     except Exception as e:
         print("[Errno {0}] {1}".format(e.errno, e.strerror))
 
