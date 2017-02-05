@@ -9,12 +9,18 @@ def main():
     '''
     Sends a single POST request with a test bit of text.
     '''
+    sample_text = 'I had a wonderful experience! The rooms were wonderful and the staff were helpful.' # from default given at https://www.microsoft.com/cognitive-services/en-us/text-analytics-api
+    make_request(np.array([sample_text]))
+
+def make_request(text_vector):
+    '''
+    Sends one request for each item in text_vector, which is a numpy vector. Careful not to exceed the API limit!
+    '''
     headers = headers()
     params = urllib.parse.urlencode({})
-    sample_text = 'I had a wonderful experience! The rooms were wonderful and the staff were helpful.' # from default given at https://www.microsoft.com/cognitive-services/en-us/text-analytics-api
-    body = body_from_string_vectors(np.array([sample_text]))
+    body = body_from_string_vectors(text_vector)
     try:
-    	conn = http.client.HTTPSConnection('westus.api.cognitive.microsoft.com')
+        conn = http.client.HTTPSConnection('westus.api.cognitive.microsoft.com')
     	conn.request("POST", "/text/analytics/v2.0/sentiment?%s" % params, str(body), headers)
     	response = conn.getresponse()
     	data = response.read()
