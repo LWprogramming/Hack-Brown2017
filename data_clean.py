@@ -18,7 +18,9 @@ def clean_data():
 	1. Load data from csv file
 	2. Remove unnecessary quotes
 	3. Remove emoticons
-	3. Fix all typos using Microsoft's Bing Spell Check API: https://www.microsoft.com/cognitive-services/en-us/bing-spell-check-api
+	4. Fix all typos using Microsoft's Bing Spell Check API: https://www.microsoft.com/cognitive-services/en-us/bing-spell-check-api
+
+	NOTE: #4 on hold because it turns out the spell-check API isn't free for some reason.
 	'''
 	# step 1
 	data = pandas.read_csv('sarcasm_v2.csv').as_matrix()
