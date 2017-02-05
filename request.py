@@ -25,7 +25,7 @@ def make_request(text_vector):
         conn = http.client.HTTPSConnection('westus.api.cognitive.microsoft.com')
         conn.request("POST", "/text/analytics/v2.0/sentiment?%s" % params, str(body), headers)
         response = conn.getresponse()
-        evauation = response.read()
+        evaluation = response.read()
         conn.close()
         return evaluation # score is on a scale from 0 to 1, with 0 being the most negative sentiment and 1 being the most positive sentiment. Includes some metadata.
 
