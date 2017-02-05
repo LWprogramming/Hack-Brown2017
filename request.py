@@ -3,6 +3,7 @@ Code adapted from https://westus.dev.cognitive.microsoft.com/docs/services/TextA
 '''
 import http.client, urllib.request, urllib.parse, urllib.error
 import script
+import numpy as np
 
 def main():
     '''
@@ -10,15 +11,8 @@ def main():
     '''
     headers = headers()
     params = urllib.parse.urlencode({})
-    body = {
-    	"documents": [
-    		{
-    		"language": "en",
-    		"id": "1",
-    		"text": "I had a wonderful experience! The rooms were wonderful and the staff were helpful."
-    		}
-    	]
-    }
+    sample_text = 'I had a wonderful experience! The rooms were wonderful and the staff were helpful.' # from default given at https://www.microsoft.com/cognitive-services/en-us/text-analytics-api
+    body = body_from_string_vectors(np.array([sample_text]))
     try:
     	conn = http.client.HTTPSConnection('westus.api.cognitive.microsoft.com')
     	conn.request("POST", "/text/analytics/v2.0/sentiment?%s" % params, str(body), headers)
@@ -28,6 +22,23 @@ def main():
     	conn.close()
     except Exception as e:
     	print("[Errno {0}] {1}".format(e.errno, e.strerror))
+
+def body_from_string_vectors(vector):
+    '''
+    Takes in a numpy vector of strings, each string representing a separate quote from someone.
+    '''
+    body_documents_list = []
+    for string in vector:
+        body_documents_list += {
+        'language': 'en',
+        'id': '1',
+        'text': string
+        }
+    body = {
+        'documents': {
+            body_documents_list
+        }
+    }
 
 def generate_headers():
     api_key = script.get_api_key()
