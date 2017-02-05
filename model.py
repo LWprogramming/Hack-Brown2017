@@ -28,7 +28,9 @@ def main():
 	# problem: seem to be rate-limited when trying larger sets, like 200 for example
 	reduced_quotes = reduced_data[:, 3]
 	reduced_response = reduced_data[:, 4]
-	save_data(reduced_data[:, 1], reduced_quotes, reduced_response, 'training_data')
+
+	# save_data(reduced_data[:, 1], reduced_quotes, reduced_response, 'training_data')
+
 	# classifier = train()
 
 	clf = SGDClassifier(loss="hinge", penalty="l2") # stochastic gradient descent
@@ -36,7 +38,7 @@ def main():
 	labels = data[:, 0]
 	features = data[:, 1:]
 	scores = cross_val_score(clf, features, labels, cv=5) # KFolds, 5 folds
-	print('average cross-validation score: ', np.mean(scores)) #usually almost 50%
+	print('average cross-validation score: ', np.mean(scores)) #usually almost 50%, but we've seen as low as 30ish and as high as 60%
 
 def save_data(labels, quotes_vector, response_vector, file_name):
 	'''creates a csv with some number of rows with 3 columns--the first being the label for the training example, the second as the sentiment value for the quote, and the third being the sentiment value for the response. Saves the csv file.
