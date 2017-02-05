@@ -26,8 +26,9 @@ def make_request(text_vector):
         conn.request("POST", "/text/analytics/v2.0/sentiment?%s" % params, str(body), headers)
         response = conn.getresponse()
         data = response.read()
-        print(data) # score is on a scale from 0 to 1, with 0 being the most negative sentiment and 1 being the most positive sentiment. Includes some metadata.
         conn.close()
+        return data # score is on a scale from 0 to 1, with 0 being the most negative sentiment and 1 being the most positive sentiment. Includes some metadata.
+
     except Exception as e:
         print("[Errno {0}] {1}".format(e.errno, e.strerror))
 
