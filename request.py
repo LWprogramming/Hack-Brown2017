@@ -16,7 +16,7 @@ def make_request(text_vector):
     '''
     Sends one request for each item in text_vector, which is a numpy vector. Careful not to exceed the API limit!
     '''
-    headers = headers()
+    headers = generate_headers()
     params = urllib.parse.urlencode({})
     body = body_from_string_vectors(text_vector)
     try:
@@ -29,12 +29,12 @@ def make_request(text_vector):
     except Exception as e:
         print("[Errno {0}] {1}".format(e.errno, e.strerror))
 
-def body_from_string_vectors(vector):
+def body_from_string_vectors(text_vector):
     '''
     Takes in a numpy vector of strings, each string representing a separate quote from someone.
     '''
     body_documents_list = []
-    for string in vector:
+    for string in text_vector:
         body_documents_list += {
         'language': 'en',
         'id': '1',
@@ -47,7 +47,7 @@ def body_from_string_vectors(vector):
     }
 
 def generate_headers():
-    api_key = script.get_api_key()
+    api_key = data_clean.get_api_key()
     headers = {
         # Request headers
         'Content-Type': 'application/json',
