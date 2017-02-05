@@ -6,6 +6,7 @@ By Shereen Oraby, Vrindavan Harrison, Lena Reed, Ernesto Hernandez, Ellen Riloff
 import numpy as np
 import pandas
 import re
+import os
 
 def main():
 	data = clean_data()
@@ -72,6 +73,18 @@ def clean_quotes(string):
 def remove_emoticons(string):
 	''' removes emoticons from the strings.'''
 	return re.sub('emoticons\S*', '', string)
+
+def get_api_key_path():
+	'''gets path to api key in a text file stored locally, outside of git repository.'''
+	parent_path = os.path.pardir
+	return parent_path + "/api_key.txt"
+	
+def get_api_key():
+	'''gets api key.'''
+	handle = open(get_api_key_path(), 'r')
+	data = handle.read()
+	handle.close()
+	return data
 
 if __name__ == '__main__':
 	main()
