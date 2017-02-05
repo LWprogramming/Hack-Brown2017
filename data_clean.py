@@ -10,6 +10,7 @@ import os
 
 def main():
 	data = clean_data()
+	# print(data[0, 1]) # should be 1 for sarcasm
 
 def clean_data():
 	'''
@@ -24,7 +25,6 @@ def clean_data():
 	# print(data.shape)
 	data[:, 0] = np.array([find_category(x) for x in data[:, 0]])
 	data[:, 1] = np.array([sarcasm(x) for x in data[:, 1]])
-	# print(data[0,1]) # should be 1 for sarcasm
 
 	# step 2
 	data[:, 3] = np.array([clean_quotes(x) for x in data[:, 3]])
