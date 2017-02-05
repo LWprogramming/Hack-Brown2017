@@ -36,7 +36,7 @@ def main():
 	labels = data[:, 0]
 	features = data[:, 1:]
 	scores = cross_val_score(clf, features, labels, cv=5) # KFolds, 5 folds
-	print('average cross-validation score: ', np.mean(scores))
+	print('average cross-validation score: ', np.mean(scores)) #usually almost 50%
 
 def save_data(labels, quotes_vector, response_vector, file_name):
 	'''creates a csv with some number of rows with 3 columns--the first being the label for the training example, the second as the sentiment value for the quote, and the third being the sentiment value for the response. Saves the csv file.
