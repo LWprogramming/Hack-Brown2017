@@ -5,12 +5,10 @@ import http.client, urllib.request, urllib.parse, urllib.error
 import script
 
 def main():
-    api_key = script.get_api_key()
-    headers = {
-        # Request headers
-        'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': api_key
-    }
+    '''
+    Sends a single POST request with a test bit of text.
+    '''
+    headers = headers()
     params = urllib.parse.urlencode({})
     body = {
     	"documents": [
@@ -30,6 +28,15 @@ def main():
     	conn.close()
     except Exception as e:
     	print("[Errno {0}] {1}".format(e.errno, e.strerror))
+
+def generate_headers():
+    api_key = script.get_api_key()
+    headers = {
+        # Request headers
+        'Content-Type': 'application/json',
+        'Ocp-Apim-Subscription-Key': api_key
+    }
+    return headers
 
 if __name__ == '__main__':
     main()
