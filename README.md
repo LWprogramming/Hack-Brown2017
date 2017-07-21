@@ -12,12 +12,3 @@ Uses machine learning and the Text Analytics API from Microsoft's Cognitive Serv
 
 ## Usage instructions
 
-TBD
-
-## Support
-
-[Please...](github.com/lwprogramming/Hack-Brown2017/issues/new)
-
-## Contributing
-
-[Please...](github.com/lwprogramming/Hack-Brown2017/compare)
