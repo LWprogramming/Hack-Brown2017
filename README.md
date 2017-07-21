@@ -12,3 +12,8 @@ Uses machine learning and the Text Analytics API from Microsoft's Cognitive Serv
 
 ## Usage instructions
 
+~~~~ python3 model.py ~~~~
+
+## Pipeline
+
+Clean data -> Send text to Microsoft Cognitive Services -> use sentiment to evaluate sarcasm
